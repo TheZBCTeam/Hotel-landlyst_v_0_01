@@ -6,9 +6,11 @@
 
 @*<h1>BookingTest</h1>*@
 @* Booking view with a form to create a booking *@
-<h4>Opret Booking</h4>
-<hr />
-<div class="row">
+<div class="mainBody">
+    <h4>Opret Booking</h4>
+    <hr />
+
+    @*<div class="row">*@
     <form asp-action="BookingConfirmation" method="post">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="row">
@@ -58,6 +60,9 @@
                     <span asp-validation-for="City" class="text-danger"></span>
                 </div>
             </div>
+
+        </div>
+        <div class="row">
             <div class="col-sm-4">
                 <div class="form-group">
                     <label asp-for="Country" class="control-label"></label>
@@ -65,23 +70,23 @@
                     <span asp-validation-for="Country" class="text-danger"></span>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-2">
+            <div class="col-sm-4">
                 <div class="form-group">
                     <label asp-for="PhoneNumber" class="control-label"></label>
                     <input asp-for="PhoneNumber" class="form-control" />
                     <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                 </div>
             </div>
-            <div class="col-sm-3">
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
                 <div class="form-group">
                     <label asp-for="Email" class="control-label"></label>
                     <input asp-for="Email" class="form-control" />
                     <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
             </div>
-            <div class="col-sm-3">
+            <div class="col-sm-4">
                 <div class="form-group">
                     <label asp-for="ConfirmEmail" class="control-label"></label>
                     <input asp-for="ConfirmEmail" class="form-control" />
@@ -93,6 +98,7 @@
             <input type="submit" value="Create" class="btn btn-primary" />
         </div>
     </form>
+    @*</div>*@
 </div>
 
 @*<div>
