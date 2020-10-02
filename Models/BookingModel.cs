@@ -11,7 +11,7 @@ namespace Hotel_landlyst_v_0_01.Models
     {
 
         [Display(Name = "Booking ID")]
-        public int BookingID { get; set; }
+        public int ReservationID { get; set; }
 
         [Display(Name = "Fornavn")]
         [Required(ErrorMessage = "Udfyld venligst Dit fornavn.")]

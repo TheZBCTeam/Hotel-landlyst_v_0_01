@@ -69,14 +69,14 @@ namespace Hotel_landlyst_v_0_01.Controllers
 
             DALReservation dr = new DALReservation(configuration);
 
-            int bookingID = dr.addBooking(reservation);
+            int reservationID = dr.addBooking(reservation);
 
-            reservation.BookingID = bookingID;
+            reservation.ReservationID = reservationID;
 
             //save the bookingID to the session
-            HttpContext.Session.SetString("bookingID", bookingID.ToString()); //This line writes to the session
+            HttpContext.Session.SetString("reservationID", reservationID.ToString()); //This line writes to the session
 
-            string stringBookingID = HttpContext.Session.GetString("bookingID"); //This is reading from session
+            string stringReservationID = HttpContext.Session.GetString("reservationID"); //This is reading from session
 
             return View(reservation);
         }
@@ -85,14 +85,14 @@ namespace Hotel_landlyst_v_0_01.Controllers
         public IActionResult BookingOverview()
         {
             // Get the BookingID from the session
-            int sessionBookingID = Convert.ToInt32(HttpContext.Session.GetString("bookingID")); //This is reading from session
+            int sessionReservationID = Convert.ToInt32(HttpContext.Session.GetString("reservationID")); //This is reading from session
 
             //Get the Booking object from the DB by using the DALReservation class (configuarion is set in top of this site)
             DALReservation dr = new DALReservation(configuration);
-            BookingModel reservation = dr.getReservation(sessionBookingID);
+            BookingModel reservation = (BookingModel)dr.getReservation(sessionReservationID);
+            
             //Send the results to the view
-
-            return View();
+            return View(reservation);
         }
 
         public IActionResult Events()

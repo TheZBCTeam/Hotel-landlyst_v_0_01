@@ -52,17 +52,49 @@ namespace Hotel_landlyst_v_0_01.DAL
             // #3.. Query the DB
             SqlDataReader reader =cmd.ExecuteReader();
             reader.Read();
-            int customerID = Convert.ToInt32(reader[0].ToString());
+            int reservationID = Convert.ToInt32(reader[0].ToString());
 
             // #4.. Close the connection
             conn.Close();
 
-            return customerID;
+            return reservationID;
         }
 
-        internal object getReservation(int sessionBookingID)
+        internal object getReservation(int sessionReservationID)
         {
-            throw new NotImplementedException();
+            BookingModel reservation = new BookingModel();
+            // #1.. Read the value from the appsettings.json and connect to DB
+            string connstr = configuration.GetConnectionString("HotelLandlystDB");
+            SqlConnection conn = new SqlConnection(connstr);
+            conn.Open();
+
+            // #2.. Create command and get the hands on the customerID
+            string query = "SELECT [firstName],[lastName],[streetName],[streetNumber],[zipPostal],[city],[country],[phone],[email]"+
+                           "FROM [dbo].[Customers] WHERE customerID = @sessionReservationID ";
+            SqlCommand cmd = new SqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("@sessionReservationID", sessionReservationID);
+      
+
+            // #3.. Query the DB
+            SqlDataReader reader = cmd.ExecuteReader();
+            reader.Read();
+            reservation.ReservationID = sessionReservationID;
+            reservation.FirstName = (reader["firstName"].ToString());
+            reservation.LastName = (reader["lastName"].ToString());
+            reservation.StreetName = (reader["streetName"].ToString());
+            reservation.StreetNumber = (Convert.ToInt32(reader["streetNumber"]));
+            reservation.ZipPostal = (Convert.ToInt32(reader["zipPostal"]));
+            reservation.City = (reader["city"].ToString());
+            reservation.Country = (reader["country"].ToString());
+            reservation.PhoneNumber = (reader["phone"].ToString());
+            reservation.Email = (reader["email"].ToString());
+
+
+            // #4.. Close the connection
+            conn.Close();
+
+
+            return reservation;
         }
     }
 }
