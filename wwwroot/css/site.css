@@ -1,0 +1,197 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+
+
+
+/*Navigation bar (This is a serious mess i know, but will hopefully get better soon)*/
+.navbar {
+    background-color: rgba(27, 110, 194, 0.0) !important;
+    border: 0px !important;
+    padding: 0px;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+}
+
+    .navbar.navbar-default {
+        background-color: rgba(27, 110, 194, 0.0) !important;
+        border: 0px !important;
+        -webkit-box-shadow: none !important;
+        box-shadow: none !important;
+    }
+
+        .navbar.navbar-default .navbar-collapse {
+            align-content: center;
+            border: 0px !important;
+            -webkit-box-shadow: none !important;
+            box-shadow: none !important;
+        }
+
+            .navbar.navbar-default .navbar-collapse img {
+                align-content: center;
+                border: 0px !important;
+                -webkit-box-shadow: none !important;
+                box-shadow: none !important;
+            }
+
+a.navbar-brand {
+    /*    color: rgba(255, 255, 255, 0.0);
+    background-color: rgba(255, 255, 255, 0.0);*/
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
+}
+
+/* Provide sufficient contrast against white background */
+a {
+    color: #0366d6;
+}
+
+/*Buttons*/
+.btn-primary {
+    color: rgba(255, 255, 255, .0);
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+/*.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: #fff;
+    color: rgba(255, 255, 255, 1.0);
+    background-color: #1b6ec2;
+       border-color: #1861ac;
+}*/
+
+/*Navigation background*/
+.nav-pills {
+    text-align: center;
+    background-color: rgba(12,5,3,0.85);
+    opacity: 0.85;
+}
+/*Not active menu*/
+.nav-link {
+    color: rgba(255,255,255,0.85) !important;
+    font-family: 'Marko One', serif;
+    font-weight: bold;
+}
+/*mouse over menu*/
+.nav-pills .pill .nav-link:hover {
+    color: rgba(131,93,72,0.6);
+    font-family: 'Marko One', serif;
+    font-weight: bold;
+}
+/*Active menu*/
+.nav-pills .pill .nav-link.active {
+    color: rgba(12,5,3,0.85);
+    background-color: rgba(131,93,72,0.6);
+    font-family: 'Marko One', serif;
+    font-weight: bold;
+}
+
+/*Forms layout*/
+.myForms {
+    position: relative;
+    background-color: rgba(202,203,205,0.8);
+    border-style: solid;
+    border-radius: 25px 25px;
+    border-color: rgba(1, 92, 208,0.3);
+    border-width: 4px;
+    box-shadow: 3px 3px 10px rgba(0,0,0,0.9) !important;
+    margin: 0px 0px 15px 0px;
+    padding: 10px;
+}
+
+/*Forms layout*/
+.mySearch {
+    position: relative;
+    background-color: rgba(202,203,205,0.8);
+    border-style: solid;
+    border-radius: 25px 25px;
+    border-color: rgba(1, 92, 208,0.3);
+    border-width: 4px;
+    box-shadow: 3px 3px 10px rgba(0,0,0,0.9) !important;
+    margin: 0px 0px 15px 0px;
+    padding: 10px;
+}
+
+.col-md-4 {
+    position: relative;
+    background-color: rgba(202,203,205,0.8);
+    border-style: solid;
+    border-radius: 25px 25px;
+    border-color: rgba(1, 92, 208,0.3);
+    border-width: 4px;
+    box-shadow: 3px 3px 10px rgba(0,0,0,0.9) !important;
+    margin: 0px 0px 15px 0px;
+    padding: 10px;
+}
+
+
+
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.border-top {
+    border-top: 0px solid #e5e5e5;
+}
+
+.border-bottom {
+    border-bottom: 0px solid #e5e5e5;
+}
+
+.box-shadow {
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+    font-size: 1rem;
+    line-height: inherit;
+}
+
+
+
+
+
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+    background-image: url('/Images/Eaves_Hall_cropped_1920_high.jpg');
+    background-color: #292929;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    display: table;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px; /* Vertically center the text there */
+    /*    -webkit-box-shadow: none !important;
+    box-shadow: none !important;*/
+    border: 0px !important;
+}

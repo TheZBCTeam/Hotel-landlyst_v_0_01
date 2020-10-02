@@ -1,0 +1,33 @@
+﻿@model Hotel_landlyst_v_0_01.Models.BookingModel
+
+@{
+    ViewData["Title"] = "BookingBekræftelse";
+}
+
+<div class="text-center">
+    <h1>BookingConfirmation</h1>
+    <p>Tak for din reservation. Vi glæder os til besøget.</p>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <label asp-for="BookingID"></label>
+            <p>@Model.BookingID</p>
+
+
+        </div>
+        <div class="col-md-4">
+            <label asp-for="FirstName" class="control-label"></label>
+            <p>@Model.FirstName</p>
+
+
+        </div>
+        <div class="col-md-4">
+            <label asp-for="LastName" class="control-label"></label>
+            <p>@Model.LastName</p>
+
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,45 @@
+﻿@model Hotel_landlyst_v_0_01.Models.SearchRoomsModel
+
+@{
+    ViewData["Title"] = "Værelser";
+}
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    Se vores skønne værelser og book her
+    <div class="container">
+
+        @*Searchform start*@
+        <div class="mySearch">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class=" form-group">
+                        <label for="arival">Ankomst:</label>
+                        <input type="date" class="form-control" id="arival" placeholder="Ankomst" name=" arival" required />
+                    </div>
+                </div>
+                <div class="col-sm-1">
+                </div>
+                <div class="col-sm-4">
+                    <div class=" form-group">
+                        <label for="departure">Afrejse:</label>
+                        <input type="date" class="form-control" id="departure" placeholder="Afrejse" name=" departure" required />
+                    </div>
+                </div>
+                <div class="col-sm-2">
+
+                    <div class="button">
+                        <button type="button" class="btn btn-primary">Søg</button>
+                    </div>
+                </div>
+                <div class="col-sm-1">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+</p>
+
+
+
