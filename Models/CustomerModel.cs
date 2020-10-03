@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Hotel_landlyst_v_0_01.Models
 {
-    public class Customer
+    public class CustomerModel
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }

@@ -26,6 +26,12 @@ namespace Hotel_landlyst_v_0_01.DAL
         #endregion
 
 
+        internal object SearchRooms(SearchRoomsModel searchInput)
+        {
+
+            return 0;
+        }
+
 
         internal int addBooking(BookingModel reservation)
         {

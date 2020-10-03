@@ -7,39 +7,76 @@
 
 <p>
     Se vores skønne værelser og book her
-    <div class="container">
-
-        @*Searchform start*@
-        <div class="mySearch">
-            <div class="row">
-                <div class="col-sm-4">
-                    <div class=" form-group">
-                        <label for="arival">Ankomst:</label>
-                        <input type="date" class="form-control" id="arival" placeholder="Ankomst" name=" arival" required />
-                    </div>
-                </div>
-                <div class="col-sm-1">
-                </div>
-                <div class="col-sm-4">
-                    <div class=" form-group">
-                        <label for="departure">Afrejse:</label>
-                        <input type="date" class="form-control" id="departure" placeholder="Afrejse" name=" departure" required />
-                    </div>
-                </div>
-                <div class="col-sm-2">
-
-                    <div class="button">
-                        <button type="button" class="btn btn-primary">Søg</button>
-                    </div>
-                </div>
-                <div class="col-sm-1">
-                </div>
-            </div>
-        </div>
-    </div>
-
-    
 </p>
 
 
+@*Searchform start*@
+<div class="mainBody">
+    <form asp-action="SearchRooms" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class=" form-group">
+                    <label asp-for="Arriving" class="control-label"></label>
+                    <input asp-for="Arriving" type="date" class="form-control" />
+                    <span asp-validation-for="Arriving" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class=" form-group">
+                    <label asp-for="Departing" class="control-label"></label>
+                    <input asp-for="Departing" type="date" class="form-control" />
+                    <span asp-validation-for="Departing" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <label> </label>
+                    <input type="submit" value="Tjek tilgængelighed" class="btn btn-primary" />
+                    <span></span>
+                </div>
+                @*<div class="button">
+                        <button type="submit" value="Select" class="btn btn-primary">Tjek tilgængelighed</button>
+                    </div>*@
+            </div>
+        </div>
+    </form>
+</div>
 
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
+
+
+<!--<div class="container">-->
+@*Searchform start*@
+<!--<div class="mainBody">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class=" form-group">
+                    <label for="arival">Ankomst:</label>
+                    <input type="date" class="form-control" id="arriving" placeholder="Ankomst" name=" arriving" required />
+                </div>
+            </div>
+            <div class="col-sm-1">
+            </div>
+            <div class="col-sm-4">
+                <div class=" form-group">
+                    <label for="departure">Afrejse:</label>
+                    <input type="date" class="form-control" id="departing" placeholder="Afrejse" name=" departing" required />
+                </div>
+            </div>
+            <div class="col-sm-2">
+
+                <div class="button">
+                    <button type="button" class="btn btn-primary">Tjek tilgængelighed</button>
+                </div>
+            </div>
+            <div class="col-sm-1">
+            </div>
+        </div>
+    </div>
+</div>-->
