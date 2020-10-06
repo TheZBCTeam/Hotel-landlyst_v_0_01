@@ -59,18 +59,12 @@ namespace Hotel_landlyst_v_0_01.Controllers
             
             return View();
         }
-        public IActionResult SearchRoomsResults2()
-        {
-            //DALReservation dr = new DALReservation(configuration);
-            //RoomModel searchResult = (SearchRoomsModel)dr.SearchRooms(searchInput);
-            //return View(RoomModel.searchResult);
-            return View();
-        }
+       
         public IActionResult SearchRoomsResults(SearchRoomsModel searchInput)
         {
             DALReservation dr = new DALReservation(configuration);
             RoomModel searchResult = dr.SearchRooms(searchInput);
-            return View(RoomModel.searchResult);
+            //return View(RoomModel.searchResult);
             return View(searchResult);
         }
 

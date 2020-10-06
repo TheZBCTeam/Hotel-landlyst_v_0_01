@@ -26,7 +26,7 @@ namespace Hotel_landlyst_v_0_01.DAL
         #endregion
 
 
-        internal object SearchRooms(SearchRoomsModel searchInput)
+        internal RoomModel SearchRooms(SearchRoomsModel searchInput)
         {
             RoomModel room = new RoomModel();
             // #1.. Read the value from the appsettings.json and connect to DB
@@ -35,21 +35,20 @@ namespace Hotel_landlyst_v_0_01.DAL
             conn.Open();
 
             // #2.. Create command and get the hands on the customerID
-            string query = " SELECT ro.roomType, ro.price, ro.miniBar, ro.aircondition, ro.petsPosible, ro.golfPosible," +
-                "ro.roomId, ro.imageName, rd.roomDescription" +
-                "FROM dbo.Rooms ro" +
-                "join dbo.RoomDescriptions as rd"+
-                "on ro.descriptionId = rd.descriptionId"+
-                "where ro.roomId not in(select roomId from Reservations"+
-                "where(dateadd(day, 0, '@searchInputArriving')  between arriving and departing)" +
-                "and(dateadd(day, 0, '@searchInputDeparting')  between arriving and departing))";
-
-  
+            //string query = "declare @searchInputDeparting as DATE " +
+            //               "declare @searchInputDeparting as DATE " +
+            string query = "SELECT [ro].[roomType], [ro].[price], [ro].[miniBar], [ro].[aircondition], [ro].[petsPosible], [ro].[golfPosible], " +
+                "[ro].[roomId], [ro].[imageName], [rd].[roomDescription]" +
+                "FROM [dbo].[Rooms] [ro] " +
+                "join [dbo].[RoomDescriptions] as [rd] " +
+                "on [ro].[descriptionId] = [rd].[descriptionId] " +
+                "where [ro].[roomId] not in(select [roomId] from [Reservations] " +
+                "where @searchInputArriving between [arriving] and [departing] " +
+                "and @searchInputDeparting between [arriving] and [departing]) ";
 
             SqlCommand cmd = new SqlCommand(query, conn);
-            cmd.Parameters.AddWithValue("@searchInputArriving", searchInput.Arriving);
-            cmd.Parameters.AddWithValue("@searchInputDeparting", searchInput.Departing);
-
+            cmd.Parameters.AddWithValue("@searchInputArriving", searchInput.Arriving.ToString("yyyy/MM/dd"));
+            cmd.Parameters.AddWithValue("@searchInputDeparting", searchInput.Departing.ToString("yyyy/MM/dd"));
 
             // #3.. Query the DB
             SqlDataReader reader = cmd.ExecuteReader();
@@ -59,15 +58,57 @@ namespace Hotel_landlyst_v_0_01.DAL
             room.Price = (reader["price"].ToString());
             room.MiniBar = (reader["miniBar"].ToString());
             room.Aircondition = (reader["aircondition"].ToString()); ;
-            room.PetsPossible = (reader["petsPossible"].ToString());
-            room.GolfPossible = (reader["golfPossible"].ToString());
+            room.PetsPossible = (reader["petsPosible"].ToString());
+            room.GolfPossible = (reader["golfPosible"].ToString());
             room.RoomDescription = (reader["roomDescription"].ToString());
-
 
             // #4.. Close the connection
             conn.Close();
             return room;
         }
+
+
+
+        //internal RoomModel SearchRooms(SearchRoomsModel searchInput)
+        //{
+        //    RoomModel room = new RoomModel();
+        //    // #1.. Read the value from the appsettings.json and connect to DB
+        //    string connstr = configuration.GetConnectionString("HotelLandlystDB");
+        //    SqlConnection conn = new SqlConnection(connstr);
+        //    conn.Open();
+
+        //    // #2.. Create command and get the hands on the customerID
+        //    //string query = "declare @searchInputDeparting as DATE " +
+        //    //               "declare @searchInputDeparting as DATE " +
+        //    string query = "SELECT [ro].[roomType], [ro].[price], [ro].[miniBar], [ro].[aircondition], [ro].[petsPosible], [ro].[golfPosible], " +
+        //        "[ro].[roomId], [ro].[imageName], [rd].[roomDescription]" +
+        //        "FROM [dbo].[Rooms] [ro] " +
+        //        "join [dbo].[RoomDescriptions] as [rd] "+
+        //        "on [ro].[descriptionId] = [rd].[descriptionId] "+
+        //        "where [ro].[roomId] not in(select [roomId] from [Reservations] "+
+        //        "where @searchInputArriving between [arriving] and [departing] " +
+        //        "and @searchInputDeparting between [arriving] and [departing]) ";
+
+        //      SqlCommand cmd = new SqlCommand(query, conn);
+        //    cmd.Parameters.AddWithValue("@searchInputArriving", searchInput.Arriving.ToString("yyyy/MM/dd"));
+        //    cmd.Parameters.AddWithValue("@searchInputDeparting", searchInput.Departing.ToString("yyyy/MM/dd"));
+
+        //    // #3.. Query the DB
+        //    SqlDataReader reader = cmd.ExecuteReader();
+        //    reader.Read();
+        //    room.RoomType = (reader["[ro].[roomType]"].ToString());
+        //    room.ImageName = (reader["ro.imageName"].ToString());
+        //    room.Price = (reader["ro.price"].ToString());
+        //    room.MiniBar = (reader["ro.miniBar"].ToString());
+        //    room.Aircondition = (reader["ro.aircondition"].ToString()); ;
+        //    room.PetsPossible = (reader["ro.petsPossible"].ToString());
+        //    room.GolfPossible = (reader["ro.golfPossible"].ToString());
+        //    room.RoomDescription = (reader["ro.roomDescription"].ToString());
+
+        //    // #4.. Close the connection
+        //    conn.Close();
+        //    return room;
+        //}
 
 
         internal int addBooking(BookingModel reservation)
