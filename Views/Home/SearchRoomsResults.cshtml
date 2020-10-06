@@ -1,4 +1,5 @@
 ﻿@model Hotel_landlyst_v_0_01.Models.RoomModel
+@*@model List<Hotel_landlyst_v_0_01.Models.RoomModel>*@
 
 @{
     ViewData["Title"] = "Søgeresultat";
@@ -13,6 +14,14 @@
         <h1>Søgeresultat</h1>
         <p>Følgende værelser er ledige i den valgte periode.</p>
     </div>
+
+    
+  @*@foreach (var item in Model )
+  {
+     
+  }*@
+
+    <datalist id="searchList"></datalist>
     <div class="row">
         <div class="col-sm-2">
             <label asp-for="RoomType" class="label"></label>

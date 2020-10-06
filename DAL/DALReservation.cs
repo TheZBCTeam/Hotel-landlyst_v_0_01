@@ -2,9 +2,7 @@
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Data;
 
 namespace Hotel_landlyst_v_0_01.DAL
 {
@@ -26,7 +24,7 @@ namespace Hotel_landlyst_v_0_01.DAL
         #endregion
 
 
-        internal RoomModel SearchRooms(SearchRoomsModel searchInput)
+        internal DataTable SearchRooms(SearchRoomsModel searchInput)
         {
             RoomModel room = new RoomModel();
             // #1.. Read the value from the appsettings.json and connect to DB
@@ -62,9 +60,18 @@ namespace Hotel_landlyst_v_0_01.DAL
             room.GolfPossible = (reader["golfPosible"].ToString());
             room.RoomDescription = (reader["roomDescription"].ToString());
 
+            //Making a datatable to return to html
+            DataTable table = new DataTable();
+            table.Load(reader);
+
+
             // #4.. Close the connection
             conn.Close();
-            return room;
+            return table;
+
+            //// #4.. Close the connection
+            //conn.Close();
+            //return room;
         }
         //
 
