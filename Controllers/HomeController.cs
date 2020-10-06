@@ -32,7 +32,7 @@ namespace Hotel_landlyst_v_0_01.Controllers
         {
             this.configuration = config;
         }
-
+        //
         //public HomeController(ILogger<HomeController> logger)
         //{
         //    _logger = logger;
