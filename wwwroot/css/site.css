@@ -1,7 +1,14 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
-
-
+/* Hide scrollbar for Chrome, Safari and Opera */
+.scroller::-webkit-scrollbar {
+    display: none;
+}
+/*Hide scrollbar for IE, Edge(old) and firefox*/
+.scroller {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox  (i know i know css3)*/
+}
 
 
 /*Navigation bar (This is a serious mess i know, but will hopefully get better soon)*/
@@ -208,11 +215,12 @@ body {
     color: white;
     border-style: double;
 }
+
 .carousel-inner img {
     width: 100%; /* Set width to 100% */
     margin: auto;
     min-height: 200px;
-    max-height: 400px;
+    max-height: 350px;
 }
 
 h1.info {
@@ -250,21 +258,22 @@ div.img-responsive {
 
 h1.centered_head {
     color: white;
-    
     padding-bottom: 10px;
     border-radius: 10px;
-
     text-align: center;
 }
-#hedline{
+
+#hedline {
     padding-bottom: 100 pz;
 }
+
 #food {
     min-height: 150px;
     max-height: 250px;
     min-width: 100px;
     max-width: 200px;
 }
+
 #centered2 {
     position: absolute;
     top: 50%;
@@ -281,5 +290,4 @@ h1.centered_head {
     position: relative;
     text-align: center;
     color: white;
-
 }
