@@ -195,3 +195,91 @@ body {
     box-shadow: none !important;*/
     border: 0px !important;
 }
+
+
+
+/* bootstrap css styles
+-------------------------------------------------- */
+/* index*/
+#boodytext {
+    background-color: rgba(179,191,218,0.4);
+    text-shadow: 2px 2px 4px #000000;
+    box-shadow: gray;
+    color: white;
+    border-style: double;
+}
+.carousel-inner img {
+    width: 100%; /* Set width to 100% */
+    margin: auto;
+    min-height: 200px;
+    max-height: 400px;
+}
+
+h1.info {
+    float: top left;
+}
+
+div.img-responsive {
+    margin: auto;
+    height: 150px;
+}
+
+.carousel-caption {
+}
+
+/* Hide the carousel text when the screen is less than 600 pixels wide */
+@media (max-width: 600px) {
+    .carousel-caption {
+        display: none;
+    }
+}
+
+/*Restaurant*/
+.centered_head {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #00ff00;
+}
+
+.head-img {
+    min-height: 200 px;
+    max-height: 300 px;
+}
+
+h1.centered_head {
+    color: white;
+    
+    padding-bottom: 10px;
+    border-radius: 10px;
+
+    text-align: center;
+}
+#hedline{
+    padding-bottom: 100 pz;
+}
+#food {
+    min-height: 150px;
+    max-height: 250px;
+    min-width: 100px;
+    max-width: 200px;
+}
+#centered2 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-style: double;
+    background-color: rgba(179,191,218,0.4);
+    text-shadow: 2px 2px 4px #000000;
+    box-shadow: gray;
+    font-size: 75px;
+}
+
+.container {
+    position: relative;
+    text-align: center;
+    color: white;
+
+}
