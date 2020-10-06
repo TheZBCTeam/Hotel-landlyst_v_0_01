@@ -1,0 +1,83 @@
+﻿@model Hotel_landlyst_v_0_01.Models.RoomModel
+
+@{
+    ViewData["Title"] = "Søgeresultat";
+}
+
+@*@foreach (var item in searchResult)
+{
+
+}*@
+<div class="mainBody">
+    <div class="text-center">
+        <h1>Søgeresultat</h1>
+        <p>Følgende værelser er ledige i den valgte periode.</p>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">
+            <label asp-for="RoomType" class="label"></label>
+        </div>
+        <div class="col-sm-3">
+            <span class="bodyText"> @Model.RoomType</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">
+            <label asp-for="RoomNumber" class="label"></label>
+        </div>
+        <div class="col-sm-3">
+            <span class="bodyText">@Model.RoomNumber</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">
+            <label asp-for="Price" class="label"></label>
+        </div>
+        <div class="col-sm-3">
+            <span class="bodyText">@Model.Price</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">
+            <label asp-for="MiniBar" class="label"></label>
+        </div>
+        <div class="col-sm-3">
+            <span class="bodyText">@Model.MiniBar</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">
+            <label asp-for="Aircondition" class="label"></label>
+        </div>
+        <div class="col-sm-3">
+            <span class="bodyText">@Model.Aircondition</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">
+            <label asp-for="PetsPossible" class="label"></label>
+        </div>
+        <div class="col-sm-3">
+            <span class="bodyText">@Model.PetsPossible</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">
+            <label asp-for="ImageName" class="label"></label>
+        </div>
+        <div class="col-sm-3">
+            <span class="bodyText">@Model.ImageName</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">
+            <label asp-for="RoomDescription" class="label"></label>
+        </div>
+        <div class="col-sm-3">
+            <span class="bodyText">@Model.RoomDescription</span>
+        </div>
+    </div>
+   
+</div>
+
+
