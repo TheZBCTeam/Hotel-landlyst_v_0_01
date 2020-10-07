@@ -165,7 +165,7 @@ a {
 
 /*Forms layout*/
 .myForms {
-    position: relative;
+   /* position: relative;*/
     background-color: rgba(202,203,205,0.8);
     border-style: solid;
     border-radius: 25px 25px;
