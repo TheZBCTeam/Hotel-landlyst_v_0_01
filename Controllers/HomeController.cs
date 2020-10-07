@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Data.SqlClient;
-using System.Configuration;
+﻿using Hotel_landlyst_v_0_01.DAL;
 using Hotel_landlyst_v_0_01.Models;
-using Hotel_landlyst_v_0_01.Data;
-using Hotel_landlyst_v_0_01.DAL;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Diagnostics;
 
 namespace Hotel_landlyst_v_0_01.Controllers
 {
@@ -56,18 +51,50 @@ namespace Hotel_landlyst_v_0_01.Controllers
 
         public IActionResult SearchRooms()
         {
-            
+
             return View();
         }
-       
+
         public IActionResult SearchRoomsResults(SearchRoomsModel searchInput)
         {
+            SearchListModel returnedList;
             DALReservation dr = new DALReservation(configuration);
-            RoomModel searchResult = dr.SearchRooms(searchInput);
+            returnedList= dr.SearchRooms(searchInput);
+            //RoomModel searchResult = dr.SearchRooms(searchInput);
             //return View(RoomModel.searchResult);
-            return View(searchResult);
+           
+            return View(returnedList);
         }
 
+
+
+
+        //public IActionResult SearchRoomsResults(SearchRoomsModel searchInput)
+        //{
+
+        //DALReservation dr = new DALReservation(configuration);
+        //    //RoomModel roomList = dr.SearchRooms(searchInput);
+        //    dr.SearchRooms(searchInput);
+        //    //RoomModel searchResult = dr.SearchRooms(searchInput);
+        //    //return View(RoomModel.searchResult);
+
+        //    return View(roomList);
+        //}
+
+
+
+
+        //  public IActionResult SearchRoomsResults(SearchRoomsModel searchInput)
+        //{
+        //      List<RoomModel> returnroomList = new List<RoomModel>();
+        //DALReservation dr = new DALReservation(configuration);
+        //    //RoomModel roomList = dr.SearchRooms(searchInput);
+        //    returnroomList=dr.SearchRooms(searchInput);
+        //    //RoomModel searchResult = dr.SearchRooms(searchInput);
+        //    //return View(RoomModel.searchResult);
+
+        //    return View(List<>);
+        //}
 
         public IActionResult Booking()
         {
@@ -100,7 +127,7 @@ namespace Hotel_landlyst_v_0_01.Controllers
             //Get the Booking object from the DB by using the DALReservation class (configuarion is set in top of this site)
             DALReservation dr = new DALReservation(configuration);
             BookingModel reservation = (BookingModel)dr.getReservation(sessionReservationID);
-            
+
             //Send the results to the view
             return View(reservation);
         }
