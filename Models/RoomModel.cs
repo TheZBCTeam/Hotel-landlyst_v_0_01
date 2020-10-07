@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace Hotel_landlyst_v_0_01.Models
 {
+
     public class RoomModel
     {
+       
 
         [Display(Name = "Værelses ID: ")]
         public string RoomId { get; set; }

@@ -1,11 +1,14 @@
 ﻿using Hotel_landlyst_v_0_01.Models;
 using Microsoft.Data.SqlClient;
+using System.Configuration;
 using Microsoft.Extensions.Configuration;
 using System;
+using System.Collections.Generic;
 using System.Data;
 
 namespace Hotel_landlyst_v_0_01.DAL
 {
+    
     public class DALReservation
     {
         #region Fields
@@ -13,7 +16,7 @@ namespace Hotel_landlyst_v_0_01.DAL
         private IConfiguration configuration;
         #endregion
 
-
+        
 
 
         #region Constructors
@@ -24,17 +27,50 @@ namespace Hotel_landlyst_v_0_01.DAL
         #endregion
 
 
-        internal DataTable SearchRooms(SearchRoomsModel searchInput)
+        //internal DataTable SearchRooms(SearchRoomsModel searchInput)
+        //{
+        //    DataTable table = new DataTable();
+        //    // #1.. Read the value from the appsettings.json and connect to DB
+        //    string connstr = configuration.GetConnectionString("HotelLandlystDB");
+        //    SqlConnection conn = new SqlConnection(connstr);
+        //    conn.Open();
+
+        //    // #2.. Create command and get the hands on the customerID
+        //    string query = "SELECT [ro].[roomType], [ro].[price], [ro].[miniBar], [ro].[aircondition], [ro].[petsPosible], [ro].[golfPosible], " +
+        //        "[ro].[roomId], [ro].[imageName], [rd].[roomDescription]" +
+        //        "FROM [dbo].[Rooms] [ro] " +
+        //        "join [dbo].[RoomDescriptions] as [rd] " +
+        //        "on [ro].[descriptionId] = [rd].[descriptionId] " +
+        //        "where [ro].[roomId] not in(select [roomId] from [Reservations] " +
+        //        "where @searchInputArriving between [arriving] and [departing] " +
+        //        "and @searchInputDeparting between [arriving] and [departing]) ";
+
+        //    SqlCommand cmd = new SqlCommand(query, conn);
+        //    cmd.Parameters.AddWithValue("@searchInputArriving", searchInput.Arriving.ToString("yyyy/MM/dd"));
+        //    cmd.Parameters.AddWithValue("@searchInputDeparting", searchInput.Departing.ToString("yyyy/MM/dd"));
+
+        //    //Making a datatable to return to html
+        //    SqlDataAdapter sda = new SqlDataAdapter(cmd);
+        //    sda.Fill(table);
+
+        //    // #4.. Close the connection
+        //    conn.Close();
+        //    return table;
+        //}
+
+
+
+
+        internal SearchListModel SearchRooms(SearchRoomsModel searchInput)
         {
-            RoomModel room = new RoomModel();
+            SearchListModel searchListModel = new SearchListModel();
+           
             // #1.. Read the value from the appsettings.json and connect to DB
             string connstr = configuration.GetConnectionString("HotelLandlystDB");
             SqlConnection conn = new SqlConnection(connstr);
             conn.Open();
 
             // #2.. Create command and get the hands on the customerID
-            //string query = "declare @searchInputDeparting as DATE " +
-            //               "declare @searchInputDeparting as DATE " +
             string query = "SELECT [ro].[roomType], [ro].[price], [ro].[miniBar], [ro].[aircondition], [ro].[petsPosible], [ro].[golfPosible], " +
                 "[ro].[roomId], [ro].[imageName], [rd].[roomDescription]" +
                 "FROM [dbo].[Rooms] [ro] " +
@@ -51,29 +87,38 @@ namespace Hotel_landlyst_v_0_01.DAL
             // #3.. Query the DB
             SqlDataReader reader = cmd.ExecuteReader();
             reader.Read();
-            room.RoomType = (reader["roomType"].ToString());
-            room.ImageName = (reader["imageName"].ToString());
-            room.Price = (reader["price"].ToString());
-            room.MiniBar = (reader["miniBar"].ToString());
-            room.Aircondition = (reader["aircondition"].ToString()); ;
-            room.PetsPossible = (reader["petsPosible"].ToString());
-            room.GolfPossible = (reader["golfPosible"].ToString());
-            room.RoomDescription = (reader["roomDescription"].ToString());
 
-            //Making a datatable to return to html
-            DataTable table = new DataTable();
-            table.Load(reader);
+            while (reader.Read())
+            {
+                RoomModel room = new RoomModel
+                {
+                    RoomType = (reader["roomType"].ToString()),
+                    ImageName = (reader["imageName"].ToString()),
+                    Price = (reader["price"].ToString()),
+                    MiniBar = (reader["miniBar"].ToString()),
+                    Aircondition = (reader["aircondition"].ToString()),
+                    PetsPossible = (reader["petsPosible"].ToString()),
+                    GolfPossible = (reader["golfPosible"].ToString()),
+                    RoomDescription = (reader["roomDescription"].ToString())
+                };
+                searchListModel.AccessList().Add(room);
 
+            }
 
-            // #4.. Close the connection
-            conn.Close();
-            return table;
+            ////Making a datatable to return to html
+            //DataTable table = new DataTable();
+            //table.Load(reader);
+
 
             //// #4.. Close the connection
             //conn.Close();
-            //return room;
+            //return table;
+
+            // #4.. Close the connection
+            conn.Close();
+            return searchListModel;
         }
-        //
+
 
 
         //internal RoomModel SearchRooms(SearchRoomsModel searchInput)

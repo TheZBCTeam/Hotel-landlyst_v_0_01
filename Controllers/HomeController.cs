@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
 
@@ -56,14 +57,44 @@ namespace Hotel_landlyst_v_0_01.Controllers
 
         public IActionResult SearchRoomsResults(SearchRoomsModel searchInput)
         {
+            SearchListModel returnedList;
             DALReservation dr = new DALReservation(configuration);
-            DataTable searchResult = dr.SearchRooms(searchInput);
+            returnedList= dr.SearchRooms(searchInput);
             //RoomModel searchResult = dr.SearchRooms(searchInput);
             //return View(RoomModel.searchResult);
-
-            return View(searchResult);
+           
+            return View(returnedList);
         }
 
+
+
+
+        //public IActionResult SearchRoomsResults(SearchRoomsModel searchInput)
+        //{
+
+        //DALReservation dr = new DALReservation(configuration);
+        //    //RoomModel roomList = dr.SearchRooms(searchInput);
+        //    dr.SearchRooms(searchInput);
+        //    //RoomModel searchResult = dr.SearchRooms(searchInput);
+        //    //return View(RoomModel.searchResult);
+
+        //    return View(roomList);
+        //}
+
+
+
+
+        //  public IActionResult SearchRoomsResults(SearchRoomsModel searchInput)
+        //{
+        //      List<RoomModel> returnroomList = new List<RoomModel>();
+        //DALReservation dr = new DALReservation(configuration);
+        //    //RoomModel roomList = dr.SearchRooms(searchInput);
+        //    returnroomList=dr.SearchRooms(searchInput);
+        //    //RoomModel searchResult = dr.SearchRooms(searchInput);
+        //    //return View(RoomModel.searchResult);
+
+        //    return View(List<>);
+        //}
 
         public IActionResult Booking()
         {
