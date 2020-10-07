@@ -62,8 +62,8 @@ namespace Hotel_landlyst_v_0_01.Controllers
             SearchListModel returnedList;
             DALReservation dr = new DALReservation(configuration);
             returnedList= dr.SearchRooms(searchInput);
-            List<RoomModel> test = returnedList.AccessList();
-            return View(test);
+            List<RoomModel> finalReturnedList = returnedList.AccessList();
+            return View(finalReturnedList);
         }
 
         public IActionResult Booking()
