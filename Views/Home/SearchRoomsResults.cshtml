@@ -15,20 +15,20 @@
 @*@SearchListModel searchListModel = new SearchListModel();*@
 
 
-<div class="mainBody">
-    <div class="text-center">
-        <h1>Søgeresultat</h1>
-        <p>Følgende værelser er ledige i den valgte periode.</p>
-    </div>
+
+<div class="text-center">
+    <h1>Søgeresultat</h1>
+    <p>Følgende værelser er ledige i den valgte periode.</p>
+</div>
 
 
-    @foreach (var item in Model)
-    {
+@foreach (var item in Model)
+{
 
-
+    <div class="mainBody">
         <form asp-action="Booking" method="post">
             <div class="row">
-                <div class="col-sm-5">
+                <div class="col-sm-5" id="searchResultLeft">
 
                     <div class="row">
                         <div class="col-sm-5">
@@ -87,24 +87,30 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-5">
+                <div class="col-sm-5" id="searchResultRight">
                     <div class="row">
                         <div class="col-sm-12">
-                            <span class="bodyText">
-                                <img id="food" src="~/Images/Rooms/@(item.ImageName).jpg" class="img-responsive" alt="Image">
-                            </span>
+                            <div id="roomPadding">
+                                <img id="rooms" src="~/Images/Rooms/@(item.ImageName).jpg" class="img-responsive" alt="Image">
+                            </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="form-group">
-                            <input type="submit" value="Reserver" class="btn btn-primary" />
-                            <span></span>
+                        <div class="col-sm-5">
+                        </div>
+                        <div class="col-sm-5">
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="align-self-sm-center bookingbuttonPadding">
+                                <input type="submit" value="Reserver" class="btn btn-primary" />
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </form>
-    }
-</div>
+    </div>
+}
+
 
 
