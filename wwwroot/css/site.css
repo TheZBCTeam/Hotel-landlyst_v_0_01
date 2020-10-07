@@ -49,25 +49,8 @@ a.navbar-brand {
     word-break: break-all;
 }
 
-/* Provide sufficient contrast against white background */
-a {
-    color: #0366d6;
-}
 
-/*Buttons*/
-.btn-primary {
-    color: rgba(255, 255, 255, .0);
-    color: #fff;
-    background-color: #1b6ec2;
-    border-color: #1861ac;
-}
 
-/*.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-    color: #fff;
-    color: rgba(255, 255, 255, 1.0);
-    background-color: #1b6ec2;
-       border-color: #1861ac;
-}*/
 
 /*Navigation background*/
 .nav-pills {
@@ -95,6 +78,91 @@ a {
     font-weight: bold;
 }
 
+
+
+
+
+/* Provide sufficient contrast against white background */
+a {
+    color: #0366d6;
+}
+
+/*Buttons*/
+.btn-primary {
+    color: rgba(255, 255, 255, .0);
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+/*.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: #fff;
+    color: rgba(255, 255, 255, 1.0);
+    background-color: #1b6ec2;
+       border-color: #1861ac;
+}*/
+
+
+
+
+/*CSS for the mainbody*/
+.mainBody {
+    position: relative;
+    background-color: rgba(202,203,205,0.9);
+    border-style: solid;
+    border-radius: 25px 25px;
+    border-color: rgba(1, 92, 208,0.3);
+    border-width: 2px;
+    box-shadow: 3px 3px 10px rgba(0,0,0,0.9) !important;
+    margin: 15px 15px 15px 15px;
+    padding: 5px;
+
+}
+
+    .mainBody .image {
+        border-radius: 15px 15px 15px 15px !important;
+    }
+
+    .mainBody p {
+        font-family: 'Marko One', serif;
+        margin: 15px;
+        color: rgba(251,232,206,1);
+    }
+
+    .mainBody h1 {
+        font-family: 'Marko One', serif;
+        margin: 15px;
+        color: rgba(251,232,206,1);
+        font-weight: bold;
+    }
+    
+    .mainBody h2 {
+        font-family: 'Marko One', serif;
+        margin: 15px;
+        color: rgba(251,232,206,1);
+        font-weight: bold;
+    }
+
+    .mainBody h3 {
+        font-family: 'Marko One', serif;
+        margin: 15px;
+        color: rgba(251,232,206,1);
+        font-weight: bold;
+    }
+
+    .mainBody h4 {
+        font-family: 'Marko One', serif;
+        margin: 15px;
+        color: rgba(251,232,206,1);
+    }
+
+    .mainBody h5 {
+        font-family: 'Marko One', serif;
+        margin: 15px;
+        color: rgba(251,232,206,1);
+    }
+
+
 /*Forms layout*/
 .myForms {
     position: relative;
@@ -104,8 +172,18 @@ a {
     border-color: rgba(1, 92, 208,0.3);
     border-width: 4px;
     box-shadow: 3px 3px 10px rgba(0,0,0,0.9) !important;
-    margin: 0px 0px 15px 0px;
-    padding: 10px;
+    margin: 15px 15px 15px 15px;
+    padding: 5px;
+}
+
+.label {
+    font-family: 'Marko One', serif;
+    color:#000000;
+}
+
+.bodyText {
+    font-family: 'Marko One', serif;
+    color: rgba(251,232,206,1);
 }
 
 /*Forms layout*/
@@ -121,17 +199,7 @@ a {
     padding: 10px;
 }
 
-.col-md-4 {
-    position: relative;
-    background-color: rgba(202,203,205,0.8);
-    border-style: solid;
-    border-radius: 25px 25px;
-    border-color: rgba(1, 92, 208,0.3);
-    border-width: 4px;
-    box-shadow: 3px 3px 10px rgba(0,0,0,0.9) !important;
-    margin: 0px 0px 15px 0px;
-    padding: 10px;
-}
+
 
 
 

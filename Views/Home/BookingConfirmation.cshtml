@@ -4,30 +4,91 @@
     ViewData["Title"] = "BookingBekræftelse";
 }
 
-<div class="text-center">
-    <h1>BookingConfirmation</h1>
-    <p>Tak for din reservation. Vi glæder os til besøget.</p>
-</div>
 
-<div class="container">
+<div class="mainBody">
+    <div class="text-center">
+        <h1>BookingBekræftelse</h1>
+        <p>Tak for din reservation. vi har registreret følgende.<br />Vi glæder os til besøget.</p>
+    </div>
     <div class="row">
-        <div class="col-sm-4">
-            <label asp-for="ReservationID"></label>
-            <p>@Model.ReservationID</p>
-
-
+        <div class="col-sm-2">
+            <label asp-for="ReservationID" class="label"></label>
         </div>
-        <div class="col-sm-4">
-            <label asp-for="FirstName" class="control-label"></label>
-            <p>@Model.FirstName</p>
-
-
+        <div class="col-sm-3">
+            <span class="bodyText"> @Model.ReservationID</span>
         </div>
-        <div class="col-sm-4">
-            <label asp-for="LastName" class="control-label"></label>
-            <p>@Model.LastName</p>
-
-
+    </div>
+    <div class="row">
+        <div class="col-sm-2">
+            <label asp-for="FirstName" class="label"></label>
+        </div>
+        <div class="col-sm-3">
+            <span class="bodyText">@Model.FirstName</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">
+            <label asp-for="LastName" class="label"></label>
+        </div>
+        <div class="col-sm-3">
+            <span class="bodyText">@Model.LastName</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">
+            <label asp-for="StreetName" class="label"></label>
+        </div>
+        <div class="col-sm-3">
+            <span class="bodyText">@Model.StreetName</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">
+            <label asp-for="StreetNumber" class="label"></label>
+        </div>
+        <div class="col-sm-3">
+            <span class="bodyText">@Model.StreetNumber</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">
+            <label asp-for="ZipPostal" class="label"></label>
+        </div>
+        <div class="col-sm-3">
+            <span class="bodyText">@Model.ZipPostal</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">
+            <label asp-for="City" class="label"></label>
+        </div>
+        <div class="col-sm-3">
+            <span class="bodyText">@Model.City</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">
+            <label asp-for="Country" class="label"></label>
+        </div>
+        <div class="col-sm-3">
+            <span class="bodyText">@Model.Country</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">
+            <label asp-for="PhoneNumber" class="label"></label>
+        </div>
+        <div class="col-sm-3">
+            <span class="bodyText">@Model.PhoneNumber</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">
+            <label asp-for="Email" class="label"></label>
+        </div>
+        <div class="col-sm-3">
+            <span class="bodyText">@Model.Email</span>
         </div>
     </div>
 </div>
+
