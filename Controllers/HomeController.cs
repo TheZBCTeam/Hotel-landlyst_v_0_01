@@ -5,9 +5,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
+using System.Linq;
 
 namespace Hotel_landlyst_v_0_01.Controllers
 {
@@ -62,8 +64,8 @@ namespace Hotel_landlyst_v_0_01.Controllers
             returnedList= dr.SearchRooms(searchInput);
             //RoomModel searchResult = dr.SearchRooms(searchInput);
             //return View(RoomModel.searchResult);
-           
-            return View(returnedList);
+            List<RoomModel> test = returnedList.AccessList();
+            return View(test);
         }
 
 
