@@ -1,8 +1,50 @@
 ﻿@{
     ViewData["Title"] = "Events";
 }
-<h1>@ViewData["Title"]</h1>
+    <div id="demo" class="carousel slide" data-ride="carousel" id="boodytext">
 
-<p>
-    Hos Hotel Landlyst Danner vi rammerne om livets store dage.
-</p>
+        <!-- Indicators -->
+        <ul class="carousel-indicators">
+            <li data-target="#demo" data-slide-to="0" class="active"></li>
+            <li data-target="#demo" data-slide-to="1"></li>
+        </ul>
+
+        <!-- The slideshow -->
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="~/Images/Conference/BusinessConference.jpg" alt="businessConfernce" width="1100" height="500">
+            </div>
+            <div class="carousel-item">
+                <img src="~/Images/Conference/Conference.jpg" alt="Conference" width="1100" height="500">
+            </div>
+        </div>
+
+        <!-- Left and right controls -->
+        <a class="carousel-control-prev" href="#demo" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#demo" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </a>
+    </div>
+    <div class="container text-center" id="boodytext">
+        <h3>What We Do</h3><br>
+        <div class="row">
+            <div class="col-sm-6">
+                <img src="~/Images/Conference/cake.jpg" class="img-responsive" width="300" height="408" alt="Image">
+                <br>
+            </div>
+            <div class="col-sm-6">
+                <br>
+                <br>
+                <p>
+                    Ud over overnatningsmuligheder findes der også 3 store konferencelokaler/selskabslokaler,
+                    Disse kan udlejes på dagsbasis til f.eks. lokale virksomheder eller til bryllupsfester/konfirmationer.
+                </p>
+                <p>
+                    Lokalerne koster inkl. forplejning (Kaffe, the, vand og let frokost) ved heldagsmøder 295,- kr. pr. person dog min. 12 personer
+                    Prisen ved f.eks. bryllupsarrangementer varierer efter ønsker og behov hos kunden
+                </p>
+            </div>
+        </div>
+    </div>
