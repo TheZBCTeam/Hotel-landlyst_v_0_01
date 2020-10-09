@@ -66,40 +66,46 @@ namespace Hotel_landlyst_v_0_01.Controllers
             return View(finalReturnedList);
         }
 
-        public IActionResult Booking()
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Booking(string submit)
         {
-            return View();
+            int roomId = Convert.ToInt32(submit);
+            HttpContext.Session.SetString("roomId", roomId.ToString()); //This line writes to the session
+            return View(roomId);
         }
 
-        public IActionResult BookingConfirmation(BookingModel reservation)
+        public IActionResult BookingConfirmation(BookingModel addCustomer)
         {
 
             DALReservation dr = new DALReservation(configuration);
+            int sessionRoomId = Convert.ToInt32(HttpContext.Session.GetString("roomId")); //This is reading from session
 
-            int reservationID = dr.addBooking(reservation);
+            int customerId = dr.AddCustomer(addCustomer);
 
-            reservation.ReservationID = reservationID;
+            addCustomer.CustomerID = customerId;
 
             //save the bookingID to the session
-            HttpContext.Session.SetString("reservationID", reservationID.ToString()); //This line writes to the session
 
-            string stringReservationID = HttpContext.Session.GetString("reservationID"); //This is reading from session
+            HttpContext.Session.SetString("customerId", customerId.ToString()); //This line writes to the session
 
-            return View(reservation);
+            string stringCustomerId = HttpContext.Session.GetString("customerId"); //This is reading from session and is not used in the connection
+
+            return View(addCustomer);
         }
 
 
         public IActionResult BookingOverview()
         {
             // Get the BookingID from the session
-            int sessionReservationID = Convert.ToInt32(HttpContext.Session.GetString("reservationID")); //This is reading from session
+            int sessionCustomerId = Convert.ToInt32(HttpContext.Session.GetString("customerId")); //This is reading from session
 
             //Get the Booking object from the DB by using the DALReservation class (configuarion is set in top of this site)
             DALReservation dr = new DALReservation(configuration);
-            BookingModel reservation = (BookingModel)dr.getReservation(sessionReservationID);
+            BookingModel customer = (BookingModel)dr.getReservation(sessionCustomerId);
 
             //Send the results to the view
-            return View(reservation);
+            return View(customer);
         }
 
         public IActionResult Events()
