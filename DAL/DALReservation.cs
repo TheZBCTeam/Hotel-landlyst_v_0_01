@@ -36,7 +36,7 @@ namespace Hotel_landlyst_v_0_01.DAL
             conn.Open();
 
             // #2.. Create command and get the hands on the customerID
-            string query = "SELECT [ro].[roomType], [ro].[roomNumber], [ro].[price], [ro].[miniBar], [ro].[aircondition], [ro].[petsPosible], [ro].[golfPosible], " +
+            string query = "SELECT [ro].[roomType], [ro].[price], [ro].[miniBar], [ro].[aircondition], [ro].[petsPosible], [ro].[golfPosible], " +
                 "[ro].[roomId], [ro].[imageName], [rd].[roomDescription]" +
                 "FROM [dbo].[Rooms] [ro] " +
                 "join [dbo].[RoomDescriptions] as [rd] " +
@@ -57,9 +57,7 @@ namespace Hotel_landlyst_v_0_01.DAL
             {
                 RoomModel room = new RoomModel
                 {
-                    RoomId = (reader["roomId"].ToString()),
                     RoomType = (reader["roomType"].ToString()),
-                    RoomNumber = (reader["roomNumber"].ToString()),
                     ImageName = (reader["imageName"].ToString()),
                     Price = (reader["price"].ToString()),
                     MiniBar = (reader["miniBar"].ToString()),
@@ -79,41 +77,7 @@ namespace Hotel_landlyst_v_0_01.DAL
 
 
 
-        internal int AddCustomer(BookingModel customer)
-        {
-
-            // #1.. Read the value from the appsettings.json and connect to DB
-            string connstr = configuration.GetConnectionString("HotelLandlystDB");
-            SqlConnection conn = new SqlConnection(connstr);
-            conn.Open();
-
-            // #2.. Create command and get the hands on the customerID
-            string query = "INSERT INTO [dbo].[Customers]([firstName],[lastName],[streetName],[streetNumber],[zipPostal],[city],[country],[phone],[email])" +
-                           "VALUES(@firstName,@lastName,@streetName,@streetNumber,@zipPostal,@city,@country,@phone,@email)select SCOPE_IDENTITY() as customerID";
-            SqlCommand cmd = new SqlCommand(query, conn);
-            cmd.Parameters.AddWithValue("@firstName", customer.FirstName);
-            cmd.Parameters.AddWithValue("@lastName", customer.LastName);
-            cmd.Parameters.AddWithValue("@streetName", customer.StreetName);
-            cmd.Parameters.AddWithValue("@streetNumber", customer.StreetNumber);
-            cmd.Parameters.AddWithValue("@zipPostal", customer.ZipPostal);
-            cmd.Parameters.AddWithValue("@city", customer.City);
-            cmd.Parameters.AddWithValue("@country", customer.Country);
-            cmd.Parameters.AddWithValue("@phone", customer.PhoneNumber);
-            cmd.Parameters.AddWithValue("@email", customer.Email);
-
-            // #3.. Query the DB
-            SqlDataReader reader = cmd.ExecuteReader();
-            reader.Read();
-            int customerId = Convert.ToInt32(reader[0].ToString());
-
-            // #4.. Close the connection
-            conn.Close();
-
-            return customerId;
-        }
-        //This part is not yet ready, but i have figured out how to do it as it is just to build upon the customercreation,
-        //just with the reservationModel instead, and using the seesion variables to add to the reservation.
-        internal int AddReservation(BookingModel reservation)
+        internal int addBooking(BookingModel reservation)
         {
 
             // #1.. Read the value from the appsettings.json and connect to DB
@@ -138,17 +102,17 @@ namespace Hotel_landlyst_v_0_01.DAL
             // #3.. Query the DB
             SqlDataReader reader = cmd.ExecuteReader();
             reader.Read();
-            int customerId = Convert.ToInt32(reader[0].ToString());
+            int reservationID = Convert.ToInt32(reader[0].ToString());
 
             // #4.. Close the connection
             conn.Close();
 
-            return customerId;
+            return reservationID;
         }
 
-        internal object getReservation(int sessionCustomerId)
+        internal object getReservation(int sessionReservationID)
         {
-            BookingModel customer = new BookingModel();
+            BookingModel reservation = new BookingModel();
             // #1.. Read the value from the appsettings.json and connect to DB
             string connstr = configuration.GetConnectionString("HotelLandlystDB");
             SqlConnection conn = new SqlConnection(connstr);
@@ -156,31 +120,31 @@ namespace Hotel_landlyst_v_0_01.DAL
 
             // #2.. Create command and get the hands on the customerID
             string query = "SELECT [firstName],[lastName],[streetName],[streetNumber],[zipPostal],[city],[country],[phone],[email]" +
-                           "FROM [dbo].[Customers] WHERE customerID = @sessionCustomerID ";
+                           "FROM [dbo].[Customers] WHERE customerID = @sessionReservationID ";
             SqlCommand cmd = new SqlCommand(query, conn);
-            cmd.Parameters.AddWithValue("@sessionCustomerID", sessionCustomerId);
+            cmd.Parameters.AddWithValue("@sessionReservationID", sessionReservationID);
 
 
             // #3.. Query the DB
             SqlDataReader reader = cmd.ExecuteReader();
             reader.Read();
-            customer.CustomerID = sessionCustomerId;
-            customer.FirstName = (reader["firstName"].ToString());
-            customer.LastName = (reader["lastName"].ToString());
-            customer.StreetName = (reader["streetName"].ToString());
-            customer.StreetNumber = (Convert.ToInt32(reader["streetNumber"]));
-            customer.ZipPostal = (Convert.ToInt32(reader["zipPostal"]));
-            customer.City = (reader["city"].ToString());
-            customer.Country = (reader["country"].ToString());
-            customer.PhoneNumber = (reader["phone"].ToString());
-            customer.Email = (reader["email"].ToString());
+            reservation.ReservationID = sessionReservationID;
+            reservation.FirstName = (reader["firstName"].ToString());
+            reservation.LastName = (reader["lastName"].ToString());
+            reservation.StreetName = (reader["streetName"].ToString());
+            reservation.StreetNumber = (Convert.ToInt32(reader["streetNumber"]));
+            reservation.ZipPostal = (Convert.ToInt32(reader["zipPostal"]));
+            reservation.City = (reader["city"].ToString());
+            reservation.Country = (reader["country"].ToString());
+            reservation.PhoneNumber = (reader["phone"].ToString());
+            reservation.Email = (reader["email"].ToString());
 
 
             // #4.. Close the connection
             conn.Close();
 
 
-            return customer;
+            return reservation;
         }
     }
 }

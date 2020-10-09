@@ -1,12 +1,18 @@
 ﻿@using System.Collections.Generic;
-@Html.AntiForgeryToken()
-@model List<Hotel_landlyst_v_0_01.Models.RoomModel>
-@*@model IEnumerable<Hotel_landlyst_v_0_01.Models.RoomModel>*@
+@*@model DataTable*@
+
+@*@model List<Hotel_landlyst_v_0_01.Models.SearchListModel>*@
+@model IEnumerable<Hotel_landlyst_v_0_01.Models.RoomModel>
+@*@model  Hotel_landlyst_v_0_01.Models.SearchListModel*@
+
+@*</Hotel_landlyst_v_0_01.Models.SearchListModel>;*@
+
+@*@model List<Hotel_landlyst_v_0_01.Models.RoomModel>*@
 
 @{
     ViewData["Title"] = "Søgeresultat";
 }
-
+@*@SearchListModel searchListModel = new SearchListModel();*@
 
 
 
@@ -15,8 +21,10 @@
     <p>Følgende værelser er ledige i den valgte periode.</p>
 </div>
 
-@for (int i = 0; i < Model.Count; i++)
+
+@foreach (var item in Model)
 {
+
     <div class="mainBody">
         <form asp-action="Booking" method="post">
             <div class="row">
@@ -24,58 +32,58 @@
 
                     <div class="row">
                         <div class="col-sm-5">
-                            <label asp-for="@Model[i].RoomType" class="label"></label>
+                            <label asp-for="@item.RoomType" class="label"></label>
                         </div>
                         <div class="col-sm-7">
-                            <span class="bodyText"> @Model[i].RoomType</span>
+                            <span class="bodyText"> @item.RoomType</span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-5">
-                            <label asp-for="@Model[i].RoomNumber" class="label"></label>
+                            <label asp-for="@item.RoomNumber" class="label"></label>
                         </div>
                         <div class="col-sm-7">
-                            <span class="bodyText">@Model[i].RoomNumber</span>
+                            <span class="bodyText">@item.RoomNumber</span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-5">
-                            <label asp-for="@Model[i].Price" class="label"></label>
+                            <label asp-for="@item.Price" class="label"></label>
                         </div>
                         <div class="col-sm-7">
-                            <span class="bodyText">@Model[i].Price</span>
+                            <span class="bodyText">@item.Price</span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-5">
-                            <label asp-for="@Model[i].MiniBar" class="label"></label>
+                            <label asp-for="@item.MiniBar" class="label"></label>
                         </div>
                         <div class="col-sm-7">
-                            <span class="bodyText">@Model[i].MiniBar</span>
+                            <span class="bodyText">@item.MiniBar</span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-5">
-                            <label asp-for="@Model[i].Aircondition" class="label"></label>
+                            <label asp-for="@item.Aircondition" class="label"></label>
                         </div>
                         <div class="col-sm-7">
-                            <span class="bodyText">@Model[i].Aircondition</span>
+                            <span class="bodyText">@item.Aircondition</span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-5">
-                            <label asp-for="@Model[i].PetsPossible" class="label"></label>
+                            <label asp-for="@item.PetsPossible" class="label"></label>
                         </div>
                         <div class="col-sm-7">
-                            <span class="bodyText">@Model[i].PetsPossible</span>
+                            <span class="bodyText">@item.PetsPossible</span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-5">
-                            <label asp-for="@Model[i].RoomDescription" class="label"></label>
+                            <label asp-for="@item.RoomDescription" class="label"></label>
                         </div>
                         <div class="col-sm-7">
-                            <span class="bodyText">@Model[i].RoomDescription</span>
+                            <span class="bodyText">@item.RoomDescription</span>
                         </div>
                     </div>
                 </div>
@@ -83,20 +91,18 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div id="roomPadding">
-                                <img id="rooms" src="~/Images/Rooms/@(Model[i].ImageName).jpg" class="img-responsive" alt="Image">
+                                <img id="rooms" src="~/Images/Rooms/@(item.ImageName).jpg" class="img-responsive" alt="Image">
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-5">
-                            <span asp-for="@Model[i].RoomId"></span>
                         </div>
                         <div class="col-sm-5">
                         </div>
                         <div class="col-sm-2">
                             <div class="align-self-sm-center bookingbuttonPadding">
-                                <button type="submit" name="submit" value="@Model[i].RoomId" class="btn btn-primary">Reserver</button>
-                                @*<input type="submit" name="booking" value="Reserver" class="btn btn-primary" />*@
+                                <input type="submit" value="Reserver" class="btn btn-primary" />
                             </div>
                         </div>
                     </div>
