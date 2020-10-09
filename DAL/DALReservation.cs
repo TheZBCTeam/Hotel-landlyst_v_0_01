@@ -86,7 +86,7 @@ namespace Hotel_landlyst_v_0_01.DAL
             SqlConnection conn = new SqlConnection(connstr);
             conn.Open();
 
-            // #2.. Create command and get the hands on the customerID
+            // #2.. Create command and get the hands on the customerID  
             string query = "INSERT INTO [dbo].[Customers]([firstName],[lastName],[streetName],[streetNumber],[zipPostal],[city],[country],[phone],[email])" +
                            "VALUES(@firstName,@lastName,@streetName,@streetNumber,@zipPostal,@city,@country,@phone,@email)select SCOPE_IDENTITY() as customerID";
             SqlCommand cmd = new SqlCommand(query, conn);
