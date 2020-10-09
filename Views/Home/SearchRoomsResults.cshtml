@@ -1,9 +1,9 @@
 ﻿@using System.Collections.Generic;
-    @*@model DataTable*@
+@*@model DataTable*@
 
 @*@model List<Hotel_landlyst_v_0_01.Models.SearchListModel>*@
-@*@model IEnumerable<Hotel_landlyst_v_0_01.Models.SearchListModel>*@
-@model  Hotel_landlyst_v_0_01.Models.SearchListModel
+@model IEnumerable<Hotel_landlyst_v_0_01.Models.RoomModel>
+@*@model  Hotel_landlyst_v_0_01.Models.SearchListModel*@
 
 @*</Hotel_landlyst_v_0_01.Models.SearchListModel>;*@
 
@@ -15,84 +15,102 @@
 @*@SearchListModel searchListModel = new SearchListModel();*@
 
 
-<div class="mainBody">
-    <div class="text-center"> 
-        <h1>Søgeresultat</h1>
-        <p>Følgende værelser er ledige i den valgte periode.</p>
-    </div>
 
-
-    @*@foreach (var item in Model)
-    {
-
-        <p>Hej</p>*@
-
-        @*<datalist id="searchList"></datalist>
-        <div class="row">
-            <div class="col-sm-2">
-                <label asp-for="RoomType" class="label"></label>
-            </div>
-            <div class="col-sm-3">
-                <span class="bodyText"> @</span>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-2">
-                <label asp-for="RoomNumber" class="label"></label>
-            </div>
-            <div class="col-sm-3">
-                <span class="bodyText">@Model.RoomNumber</span>
-            </div>
-        </div>
-        <div class="row"
-            <div class="col-sm-2">
-                <label asp-for="Price" class="label"></label>
-            </div>
-            <div class="col-sm-3">
-                <span class="bodyText">@Model.Price</span>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-2">
-                <label asp-for="MiniBar" class="label"></label>
-            </div>
-            <div class="col-sm-3">
-                <span class="bodyText">@Model.MiniBar</span>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-2">
-                <label asp-for="Aircondition" class="label"></label>
-            </div>
-            <div class="col-sm-3">
-                <span class="bodyText">@Model.Aircondition</span>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-2">
-                <label asp-for="PetsPossible" class="label"></label>
-            </div>
-            <div class="col-sm-3">
-                <span class="bodyText">@Model.PetsPossible</span>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-2">
-                <label asp-for="ImageName" class="label"></label>
-            </div>
-            <div class="col-sm-3">
-                <span class="bodyText">@Model.ImageName</span>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-2">
-                <label asp-for="RoomDescription" class="label"></label>
-            </div>
-            <div class="col-sm-3">
-                <span class="bodyText">@Model.RoomDescription</span>
-            </div>
-        </div>*@
-    }
+<div class="text-center">
+    <h1>Søgeresultat</h1>
+    <p>Følgende værelser er ledige i den valgte periode.</p>
 </div>
+
+
+@foreach (var item in Model)
+{
+
+    <div class="mainBody">
+        <form asp-action="Booking" method="post">
+            <div class="row">
+                <div class="col-sm-5" id="searchResultLeft">
+
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <label asp-for="@item.RoomType" class="label"></label>
+                        </div>
+                        <div class="col-sm-7">
+                            <span class="bodyText"> @item.RoomType</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <label asp-for="@item.RoomNumber" class="label"></label>
+                        </div>
+                        <div class="col-sm-7">
+                            <span class="bodyText">@item.RoomNumber</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <label asp-for="@item.Price" class="label"></label>
+                        </div>
+                        <div class="col-sm-7">
+                            <span class="bodyText">@item.Price</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <label asp-for="@item.MiniBar" class="label"></label>
+                        </div>
+                        <div class="col-sm-7">
+                            <span class="bodyText">@item.MiniBar</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <label asp-for="@item.Aircondition" class="label"></label>
+                        </div>
+                        <div class="col-sm-7">
+                            <span class="bodyText">@item.Aircondition</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <label asp-for="@item.PetsPossible" class="label"></label>
+                        </div>
+                        <div class="col-sm-7">
+                            <span class="bodyText">@item.PetsPossible</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <label asp-for="@item.RoomDescription" class="label"></label>
+                        </div>
+                        <div class="col-sm-7">
+                            <span class="bodyText">@item.RoomDescription</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-5" id="searchResultRight">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div id="roomPadding">
+                                <img id="rooms" src="~/Images/Rooms/@(item.ImageName).jpg" class="img-responsive" alt="Image">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-5">
+                        </div>
+                        <div class="col-sm-5">
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="align-self-sm-center bookingbuttonPadding">
+                                <input type="submit" value="Reserver" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+}
+
 
 

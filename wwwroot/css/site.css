@@ -165,7 +165,7 @@ a {
 
 /*Forms layout*/
 .myForms {
-    position: relative;
+   /* position: relative;*/
     background-color: rgba(202,203,205,0.8);
     border-style: solid;
     border-radius: 25px 25px;
@@ -177,14 +177,56 @@ a {
 }
 
 .label {
+    text-align: left;
     font-family: 'Marko One', serif;
     color:#000000;
 }
 
+.text-bold{
+text-decoration:
+}
+
 .bodyText {
+    text-align: left !important;
     font-family: 'Marko One', serif;
     color: rgba(251,232,206,1);
 }
+
+#searchResultLeft {
+    text-align: left;
+}
+
+#searchResultRight {
+    float: right !important;
+  
+}
+
+#rooms {
+    /*  min-height: 225px;
+    max-height: 450px;*/
+/*    min-width: 400px;
+*/    max-width: 100%;
+    border: solid;
+    border-width: 0px;
+    border-radius: 25px;
+    margin: 15px,15px,15px,15px !important;
+
+}
+
+#roomPadding {
+    padding-top: 15px;
+}
+
+.bookingbuttonPadding {
+    padding-top: 15px;
+  margin: 0;
+  position: absolute;
+  left: 50%;
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+    
+}
+
 
 /*Forms layout*/
 .mySearch {

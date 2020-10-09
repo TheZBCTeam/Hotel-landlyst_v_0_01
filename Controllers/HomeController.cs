@@ -5,9 +5,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
+using System.Linq;
 
 namespace Hotel_landlyst_v_0_01.Controllers
 {
@@ -27,7 +29,7 @@ namespace Hotel_landlyst_v_0_01.Controllers
         {
             this.configuration = config;
         }
-        //
+
         //public HomeController(ILogger<HomeController> logger)
         //{
         //    _logger = logger;
@@ -60,41 +62,9 @@ namespace Hotel_landlyst_v_0_01.Controllers
             SearchListModel returnedList;
             DALReservation dr = new DALReservation(configuration);
             returnedList= dr.SearchRooms(searchInput);
-            //RoomModel searchResult = dr.SearchRooms(searchInput);
-            //return View(RoomModel.searchResult);
-           
-            return View(returnedList);
+            List<RoomModel> finalReturnedList = returnedList.AccessList();
+            return View(finalReturnedList);
         }
-
-
-
-
-        //public IActionResult SearchRoomsResults(SearchRoomsModel searchInput)
-        //{
-
-        //DALReservation dr = new DALReservation(configuration);
-        //    //RoomModel roomList = dr.SearchRooms(searchInput);
-        //    dr.SearchRooms(searchInput);
-        //    //RoomModel searchResult = dr.SearchRooms(searchInput);
-        //    //return View(RoomModel.searchResult);
-
-        //    return View(roomList);
-        //}
-
-
-
-
-        //  public IActionResult SearchRoomsResults(SearchRoomsModel searchInput)
-        //{
-        //      List<RoomModel> returnroomList = new List<RoomModel>();
-        //DALReservation dr = new DALReservation(configuration);
-        //    //RoomModel roomList = dr.SearchRooms(searchInput);
-        //    returnroomList=dr.SearchRooms(searchInput);
-        //    //RoomModel searchResult = dr.SearchRooms(searchInput);
-        //    //return View(RoomModel.searchResult);
-
-        //    return View(List<>);
-        //}
 
         public IActionResult Booking()
         {

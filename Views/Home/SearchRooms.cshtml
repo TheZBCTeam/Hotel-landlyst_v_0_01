@@ -11,33 +11,45 @@
 
 
 @*Searchform start*@
-<div class="mainBody">
-    <form asp-action="SearchRoomsResults" method="post">
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div class="row">
-            <div class="col-sm-4">
-                <div class=" form-group">
-                    <label asp-for="Arriving" class="control-label"></label>
-                    <input asp-for="Arriving" type="date" class="form-control" />
-                    <span asp-validation-for="Arriving" class="text-danger"></span>
+<div class="row">
+    <div class="col-sm-4">
+    </div>
+    <div class="col-sm-4">
+        <div class="myForms">
+            <form asp-action="SearchRoomsResults" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class=" form-group">
+                            <label asp-for="Arriving" class="control-label"></label>
+                            <input asp-for="Arriving" type="date" class="form-control" />
+                            <span asp-validation-for="Arriving" class="text-danger"></span>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="col-sm-4">
-                <div class=" form-group">
-                    <label asp-for="Departing" class="control-label"></label>
-                    <input asp-for="Departing" type="date" class="form-control" />
-                    <span asp-validation-for="Departing" class="text-danger"></span>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class=" form-group">
+                            <label asp-for="Departing" class="control-label"></label>
+                            <input asp-for="Departing" type="date" class="form-control" />
+                            <span asp-validation-for="Departing" class="text-danger"></span>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="col-sm-2">
-                <div class="form-group">
-                    <label> </label>
-                    <input type="submit" value="Tjek tilgængelighed" class="btn btn-primary" />
-                    <span></span>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+
+                            <input type="submit" value="Tjek tilgængelighed" class="btn btn-primary" />
+                            <span></span>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
-    </form>
+    </div>
+    <div class="col-sm-4">
+    </div>
 </div>
 
 
