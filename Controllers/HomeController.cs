@@ -70,7 +70,7 @@ namespace Hotel_landlyst_v_0_01.Controllers
         {
             return View();
         }
-
+        //return the bookingconfirmation to the view
         public IActionResult BookingConfirmation(BookingModel reservation)
         {
 

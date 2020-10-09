@@ -25,7 +25,7 @@ namespace Hotel_landlyst_v_0_01.DAL
             this.configuration = configuration;
         }
         #endregion
-
+        //accessing the DB to search for the available room for the selected dates by joining tables and sub query
         internal SearchListModel SearchRooms(SearchRoomsModel searchInput)
         {
             SearchListModel searchListModel = new SearchListModel();
@@ -45,6 +45,7 @@ namespace Hotel_landlyst_v_0_01.DAL
                 "where @searchInputArriving between [arriving] and [departing] " +
                 "and @searchInputDeparting between [arriving] and [departing]) ";
 
+            //Applying the searchinputs to parameters
             SqlCommand cmd = new SqlCommand(query, conn);
             cmd.Parameters.AddWithValue("@searchInputArriving", searchInput.Arriving.ToString("yyyy/MM/dd"));
             cmd.Parameters.AddWithValue("@searchInputDeparting", searchInput.Departing.ToString("yyyy/MM/dd"));
