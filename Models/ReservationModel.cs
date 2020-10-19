@@ -7,7 +7,6 @@ namespace Hotel_landlyst_v_0_01.Models
 {
     public class ReservationModel
     {
-        //This is not done yet
         private int reservationId;
         private int customerId;
         private int roomId;
@@ -46,7 +45,7 @@ namespace Hotel_landlyst_v_0_01.Models
             get { return golf; }
             set { golf = value; }
         }
-        public DateTime DateTime
+        public DateTime Arriving
         {
             get { return arriving; }
             set { arriving = value; }

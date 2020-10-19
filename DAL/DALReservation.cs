@@ -26,6 +26,8 @@ namespace Hotel_landlyst_v_0_01.DAL
         }
         #endregion
 
+
+
         internal SearchListModel SearchRooms(SearchRoomsModel searchInput)
         {
             SearchListModel searchListModel = new SearchListModel();
@@ -79,6 +81,7 @@ namespace Hotel_landlyst_v_0_01.DAL
 
 
 
+
         internal int AddCustomer(BookingModel customer)
         {
 
@@ -111,9 +114,13 @@ namespace Hotel_landlyst_v_0_01.DAL
 
             return customerId;
         }
+
+
+
+
         //This part is not yet ready, but i have figured out how to do it as it is just to build upon the customercreation,
         //just with the reservationModel instead, and using the seesion variables to add to the reservation.
-        internal int AddReservation(BookingModel reservation)
+        internal int AddReservation(ReservationModel reservation)
         {
 
             // #1.. Read the value from the appsettings.json and connect to DB
@@ -122,29 +129,32 @@ namespace Hotel_landlyst_v_0_01.DAL
             conn.Open();
 
             // #2.. Create command and get the hands on the customerID
-            string query = "INSERT INTO [dbo].[Customers]([firstName],[lastName],[streetName],[streetNumber],[zipPostal],[city],[country],[phone],[email])" +
-                           "VALUES(@firstName,@lastName,@streetName,@streetNumber,@zipPostal,@city,@country,@phone,@email)select SCOPE_IDENTITY() as customerID";
+            string query = "INSERT INTO [dbo].[Reservation]([customerId],[roomId],[pets],[golf],[arriving],[departing],[guestCount],[erlyCheckIn],[conferenceParticipants],[price])" +
+                           "VALUES(@customerId,@roomId,@pets,@golf,@arriving,@departing,@guestCount,@erlyCheckIn,@conferenceParticipants,@price)select SCOPE_IDENTITY() as reservationId";
             SqlCommand cmd = new SqlCommand(query, conn);
-            cmd.Parameters.AddWithValue("@firstName", reservation.FirstName);
-            cmd.Parameters.AddWithValue("@lastName", reservation.LastName);
-            cmd.Parameters.AddWithValue("@streetName", reservation.StreetName);
-            cmd.Parameters.AddWithValue("@streetNumber", reservation.StreetNumber);
-            cmd.Parameters.AddWithValue("@zipPostal", reservation.ZipPostal);
-            cmd.Parameters.AddWithValue("@city", reservation.City);
-            cmd.Parameters.AddWithValue("@country", reservation.Country);
-            cmd.Parameters.AddWithValue("@phone", reservation.PhoneNumber);
-            cmd.Parameters.AddWithValue("@email", reservation.Email);
+            cmd.Parameters.AddWithValue("@customerId", reservation.CustomerId);
+            cmd.Parameters.AddWithValue("@roomId", reservation.RoomId);
+            cmd.Parameters.AddWithValue("@pets", reservation.Pets);
+            cmd.Parameters.AddWithValue("@golf", reservation.Golf);
+            cmd.Parameters.AddWithValue("@arriving", reservation.Arriving);
+            cmd.Parameters.AddWithValue("@departing", reservation.Departing);
+            cmd.Parameters.AddWithValue("@guestCount", reservation.GuestCount);
+            cmd.Parameters.AddWithValue("@conferenceParticipants", reservation.ConferenceParticipants);
+            cmd.Parameters.AddWithValue("@price", reservation.Price);
 
             // #3.. Query the DB
             SqlDataReader reader = cmd.ExecuteReader();
             reader.Read();
-            int customerId = Convert.ToInt32(reader[0].ToString());
+            int reservationId = Convert.ToInt32(reader[0].ToString());
 
             // #4.. Close the connection
             conn.Close();
 
-            return customerId;
+            return reservationId;
         }
+        
+
+
 
         internal object getReservation(int sessionCustomerId)
         {

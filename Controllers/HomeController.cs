@@ -57,6 +57,9 @@ namespace Hotel_landlyst_v_0_01.Controllers
             return View();
         }
 
+
+
+
         public IActionResult SearchRoomsResults(SearchRoomsModel searchInput)
         {
             SearchListModel returnedList;
@@ -65,6 +68,9 @@ namespace Hotel_landlyst_v_0_01.Controllers
             List<RoomModel> finalReturnedList = returnedList.AccessList();
             return View(finalReturnedList);
         }
+
+
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -75,24 +81,30 @@ namespace Hotel_landlyst_v_0_01.Controllers
             return View(roomId);
         }
 
-        public IActionResult BookingConfirmation(BookingModel addCustomer)
+
+
+
+        public IActionResult BookingConfirmation(BookingModel addCustomer, ReservationModel addReservation)
         {
 
             DALReservation dr = new DALReservation(configuration);
             int sessionRoomId = Convert.ToInt32(HttpContext.Session.GetString("roomId")); //This is reading from session
 
             int customerId = dr.AddCustomer(addCustomer);
-
             addCustomer.CustomerID = customerId;
 
-            //save the bookingID to the session
-
+            //save the customerID to the session
             HttpContext.Session.SetString("customerId", customerId.ToString()); //This line writes to the session
+
+            int reservationId = dr.AddReservation(addReservation);
+            addReservation.ReservationId = reservationId;
 
             string stringCustomerId = HttpContext.Session.GetString("customerId"); //This is reading from session and is not used in the connection
 
-            return View(addCustomer);
+            return View(addReservation);
         }
+
+
 
 
         public IActionResult BookingOverview()
